@@ -1,0 +1,14 @@
+.taskCompleted {
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: #D4EFDF;
+}
+
+.mybox{
+    transition: all 0.3s ease;
+}
+
+.mybox:hover:not(:hover button){
+    transform: translate(10px, -10px);
+  box-shadow: -11px 13px 0px 0px rgba(0,0,0,1);
+}

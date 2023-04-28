@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Add New Question</h2>
+<mat-dialog-content class="mat-typography w-96">
+  <!-- Modal -->
+
+        
+        <div class="container w-full">
+          <label for="user-email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your question goes here</label>
+            <input #titleInput  type="text" id="title-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex: What does [(ngModel)] do?">
+  
+      </div>
+
+   
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close >Close</button>
+  <button mat-raised-button color="primary" (click)="onClick(titleInput.value)" mat-dialog-close="">Save</button>
+</mat-dialog-actions>

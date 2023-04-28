@@ -1,0 +1,61 @@
+<section class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <!-- login container -->
+    <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <!-- form -->
+        <div class="md:w-1/2 px-8 md:px-16">
+            <h2 class="font-bold text-2xl text-[#002D74]">Register an account</h2>
+            <p class="text-xs mt-4 text-[#002D74]">If you don't have an account yet, you can create one now</p>
+
+            <form [formGroup]="signUpForm" (ngSubmit)="createAccount()" class="flex flex-col gap-4">
+                <input class="p-2 mt-8 rounded-xl border" type="text" name="name" placeholder="Name" formControlName="name">
+                <input class="p-2 mt-1 rounded-xl border" type="email" name="email" placeholder="Email" formControlName="email">
+                <div class="relative">
+                    <input class="p-2 rounded-xl border w-full" type="password" name="password" placeholder="Password" formControlName="password">
+                </div>
+                <div *ngIf="firebaseErrorMessage" class="mt-2 border border-grey-200 rounded p-2 text-red-500">
+                    {{firebaseErrorMessage}}
+                </div>
+                <button class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Create
+                    Account</button>
+                <div *ngIf="isProgressVisible" class="text-center mt-4">
+                    <div role="status">
+                        <svg aria-hidden="true"
+                            class="inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                            viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                fill="currentColor" />
+                            <path
+                                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                fill="currentFill" />
+                        </svg>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-6 grid grid-cols-3 items-center text-gray-400">
+                <hr class="border-gray-400">
+                <p class="text-center text-sm">OR</p>
+                <hr class="border-gray-400">
+            </div>
+
+
+            <div class="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+                <a href="#">Forgot your password?</a>
+            </div>
+
+            <div class="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+                <p>Have an account already?</p>
+                <button class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300"
+                    routerLink="/login">Login</button>
+            </div>
+        </div>
+
+        <!-- image -->
+        <div class="md:block hidden w-1/2">
+            <img class="rounded-2xl"
+                src="https://images.unsplash.com/photo-1506526794364-ba711a0d97fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
+        </div>
+    </div>
+</section>

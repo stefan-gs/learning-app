@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "leaning-app-80432": {
+      "hosting": {
+        "feynman-app": [
+          "leaning-app-80432"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "leaning-app-80432"
+  }
+}

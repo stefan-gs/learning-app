@@ -1,0 +1,39 @@
+<app-header [sidenav]="sidenav"></app-header>
+<mat-sidenav-container class="h-full dot--3">
+    <mat-sidenav class="w-60 pt-8 px-4" #sidenav mode="side" [(opened)]="opened" >
+
+      <mat-nav-list role="navigation" >
+        <mat-list-item>
+          <span class="flex"><mat-icon fontIcon="dashboard" class="text-black mr-2"></mat-icon>Dashboard</span>
+        </mat-list-item>
+        <mat-list-item (click)="openQuestionDialog()">
+          <span class="flex"><mat-icon fontIcon="question_answer" class="text-black mr-2"></mat-icon>Add Question</span>
+        </mat-list-item>
+        <mat-list-item (click)="openUserDialog()">
+          <span class="flex"><mat-icon fontIcon="face" class="text-black mr-2"></mat-icon>User Info</span>
+        </mat-list-item>
+        <mat-list-item (click)="openChatDialog()">
+          <span class="flex"><mat-icon fontIcon="message" class="text-black mr-2"></mat-icon>Chat</span>
+        </mat-list-item>
+      </mat-nav-list>
+      <hr>
+      <mat-nav-list>
+        <mat-list-item (click)="logOutUser()">
+          <span class="flex"><mat-icon fontIcon="power_settings_new" class="text-black mr-2" ></mat-icon>Logout</span>
+        </mat-list-item>
+        <mat-list-item (click)="openResetPassDialog()">
+          <span class="flex"><mat-icon fontIcon="email" class="text-black mr-2" ></mat-icon>Change Password</span>
+        </mat-list-item>
+      </mat-nav-list>
+     
+      
+    </mat-sidenav>
+  
+    <mat-sidenav-content class="pt-8 px-4">
+
+    
+        <app-dashboard-main></app-dashboard-main>
+
+   
+    </mat-sidenav-content>
+  </mat-sidenav-container>

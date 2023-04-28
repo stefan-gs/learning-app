@@ -1,0 +1,4 @@
+.dot--3 {
+    background-image: linear-gradient(to bottom, transparent, transparent 10%, #fff 10%), linear-gradient(to right, #000, #000 10%, #fff 10%);
+    background-size: 10px 10px;
+  }

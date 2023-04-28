@@ -1,0 +1,79 @@
+<div class="container w-full flex flex-col items-center justify-center h-auto  mx-auto mb-6">
+  <div class="mb-4 w-1/2">
+    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+      <input [(ngModel)]="searchText" type="search" id="search"
+        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Search" required />
+    </div>
+  </div>
+</div>
+
+<div *ngIf="tasks.length == 0">
+  <div class="container text-center w-auto">
+    <h2>There are no questions to answer.</h2>
+    <p>Head over to SideNav and add a question</p>
+  </div>
+</div>
+
+<div *ngIf="tasks.length > 0"
+  class="container w-full flex flex-col items-center justify-center h-auto mx-auto p-5">
+  <ul class="w-full bg-white">
+    <li *ngFor="let item of tasks| filter:searchText" class="rounded-md mb-4 border mybox"
+      [ngClass]="{'taskCompleted':item.status}">
+      <div class="w-full flex flex-wrap">
+        <div class="grow flex flex-col px-4 py-4 max-w-[75%]">
+          <h2>{{ item.title }}</h2>
+          <div class="mb-6">
+            <mat-form-field class="w-full">
+              <mat-label>Enter your answer</mat-label>
+              <textarea #userAnswer matInput placeholder="Explain it like you are talking to a 5 year old"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="container mb-3">
+            <mat-progress-bar *ngIf="progressBarCheck" mode="query"></mat-progress-bar>
+          </div>
+          <div [ngClass]="{
+              'bg-green-100': item.grade >= 7,
+              'bg-yellow-100': item.grade < 7 && item.grade >= 5,
+              'bg-red-100': item.grade < 5
+            }" class="border p-2 rounded-md mb-3 text-center h-auto" *ngIf="item.userAnswer">
+            <h3>Your Answer:</h3>
+            <p>{{ item.userAnswer }}</p>
+          </div>
+          <div class="text-center border rounded-md p-2 mb-2" *ngIf="item.aiAnswer">
+            <h3>AI Feedback</h3>
+            <p>{{ item.aiAnswer }}</p>
+          </div>
+          <div [ngClass]="{
+            'bg-green-100': item.grade >= 7,
+            'bg-yellow-100': item.grade < 7 && item.grade >= 5,
+            'bg-red-100': item.grade < 5
+          }" class="w-15 h-15 border rounded-md text-center p-3 text-4xl" *ngIf="item.grade">
+            <h3>Grade:</h3>
+            <p>{{ item.grade }}</p>
+          </div>
+        </div>
+        <div class="min-w-[25%] flex flex-col items-center justify-center px-2 mb-2 gap-2">
+          <button mat-raised-button [disabled]="item.status" (click)="onCheckAnswer(item.title, userAnswer.value, item.id)">
+            Check Answer
+          </button>
+          <div matTooltip="You can only complete a task when you receive a grade of at least 7" [matTooltipDisabled]="item.grade >= 7 || !item.grade">
+            <button mat-raised-button (click)="onMarkCompleted(item.id, item.status)" [disabled]="item.grade < 7">
+              {{item.status ? 'Try again' : 'Mark as completed'}}</button>
+          </div>
+          <button mat-raised-button (click)="onDeleteTask(item.id)">
+            Delete Task
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

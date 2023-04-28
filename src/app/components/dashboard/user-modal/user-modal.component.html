@@ -1,0 +1,17 @@
+
+<mat-dialog-content class="mat-typography">
+  <!-- Modal -->
+
+        
+        <div class="container">
+          <h2>User Info</h2>
+          <p>Email : {{this.authService.user?.email}}</p>
+          <p>Name : {{this.authService.user?.displayName}}</p>
+          <p>Account Type : {{this.authService.user?.uid}}</p>
+        </div>
+
+   
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close >Close</button>
+</mat-dialog-actions>
